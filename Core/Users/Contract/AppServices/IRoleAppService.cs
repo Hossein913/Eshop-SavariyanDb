@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace App.Domain.Core.Users.Contract.Services
+namespace App.Domain.Core.Users.Contract.AppServices
 {
-    public interface IRoleService
+    public interface IRoleAppService
     {
         Task<IdentityResult> RegisterRole(AddRoleDto roleModel);
     }

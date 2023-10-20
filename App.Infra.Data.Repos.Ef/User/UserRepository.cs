@@ -2,6 +2,7 @@
 using App.Domain.Core.Users.Dtos;
 using App.Domain.Core.Users.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -23,6 +24,7 @@ namespace App.Infra.Data.Repos.Ef.User
             _signInManager = signInManager;
             _roleManager = roleManager;
         }
+       
         private JwtSecurityToken GetToken(int userId)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("salamll08909767855677575ff"));
@@ -77,5 +79,19 @@ namespace App.Infra.Data.Repos.Ef.User
             }
             return null;
         }
+        
+
+        public async Task<IdentityResult> AddUserRole(UserRoleDto userRoleModel)
+        {
+            var user = await _userManager.FindByIdAsync(userRoleModel.UserId);
+            var role = await _roleManager.FindByIdAsync(userRoleModel.RoleId);
+            if (user != null && role != null)
+            {
+               var result = await _userManager.AddToRoleAsync(user, role.Name);
+                return result;
+            }
+            return IdentityResult.Failed();
+        }
+
     }
 }

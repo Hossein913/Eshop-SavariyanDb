@@ -15,7 +15,6 @@ namespace App.Infra.Data.Repos.Ef
             services.AddScoped<IPermissionRepository,PermissionRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
 
-
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICustomAttributeTemplateRepository, CustomAttributeTemplateRepository>();

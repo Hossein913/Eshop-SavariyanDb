@@ -20,35 +20,15 @@ namespace App.Endpoint.API.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ICategoryAppService _categoryAppService;
-        private readonly IHttpContextAccessor _contextAccessor;
-        private readonly IUserAppServies _userAppServies;
 
-        public ProductController(ICategoryAppService categoryAppService,
-                                    IUserAppServies userAppServies,
-                                    IHttpContextAccessor contextAccessor)
+
+        public ProductController(ICategoryAppService categoryAppService)
         {
-            _userAppServies = userAppServies;
+
             _categoryAppService = categoryAppService;
-            _contextAccessor = contextAccessor;
 
         }
 
-        [HttpPost ("Register")]
-        public async Task<IActionResult> Register(RegisterInputDto dto)
-        {
-            var token = await _userAppServies.Register(dto);
-            return Ok(token);
-        }
-
-        [HttpPost("Login")]
-        public async Task<IActionResult> Login(LoginDto dto)
-        {
-            var h = HttpContext.Request.Headers;
-            var y = HttpContext.User.Identity.IsAuthenticated;
-            var x = HttpContext.User.Identity.Name;
-            var token =await _userAppServies.Login(dto);
-            return Ok(token);
-        }
 
 
         [HttpPost ("AddCategory")]
@@ -61,6 +41,7 @@ namespace App.Endpoint.API.Controllers
         [TestAttribute(new[] { PermissionEnum.Rights.EDIT })]
         public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
         {
+            
             return Ok(await _categoryAppService.GetAll(cancellationToken));
         }
 

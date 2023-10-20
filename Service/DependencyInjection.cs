@@ -18,6 +18,7 @@ namespace App.Domain.Services
             services.AddScoped<IUserServise, UserService>();
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IRoleService, RoleService > ();
 
             return services;
         }

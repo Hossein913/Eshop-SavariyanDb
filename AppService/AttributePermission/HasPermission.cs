@@ -50,7 +50,7 @@ namespace App.Domain.AppServices.AttributePermission
 
                 }
                 var _right = _item[0].ToString();
-                if (!perm.Any(x => x.Name == _right))
+                if (!perm.Any(x => x.Title == _right))
                 {
                     var _res = new { status = 401, Message = "Unauthorized Access", Data = "Unauthorized Access" };
                     //context.Result = new JsonResult(_res);

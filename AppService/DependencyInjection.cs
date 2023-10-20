@@ -1,5 +1,6 @@
 ﻿using App.Domain.AppServices.Products;
 using App.Domain.AppServices.User;
+using App.Domain.AppServices.Users;
 using App.Domain.Core.Products.Contract.AppServices;
 using App.Domain.Core.Users.Contract.AppServices;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +19,7 @@ namespace App.Domain.AppServices
             services.AddScoped<ICategoryAppService, CategoryAppService>();
             services.AddScoped<IProductAppService, ProductAppService>();
             services.AddScoped<IUserAppServies, UserAppService>();
+            services.AddScoped<IRoleAppService, RoleAppService>();
             return services;
         }
     }

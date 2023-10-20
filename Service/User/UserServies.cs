@@ -37,7 +37,7 @@ namespace App.Domain.Services.User
         {
             var permissions = await _roleRepository.GetPermissionsByRoleId(id, cancellation);
 
-            if (permissions.Any(i => i.Name == permission))
+            if (permissions.Any(i => i.Title == permission))
                 return true;
 
             return false;
